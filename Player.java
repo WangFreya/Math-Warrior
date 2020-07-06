@@ -10,8 +10,17 @@ public class Player {
 		this.hitPoints = 0;
 	}
 	
+	/*public void fillQuestionBank(Question[][] qB) {
+		//Addition
+			
+		//Subtraction
+		//Multiplication
+		//Division
+	}*/
+	
 	public Player(int hp) {
 		this.hitPoints = hp;
+		
 	}
 	
 	public int getHP() {
