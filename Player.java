@@ -1,5 +1,5 @@
-import java.util.Random;
-import java.util.*;
+//import java.util.Random;
+//import java.util.*;
 
 
 public class Player {
@@ -9,14 +9,6 @@ public class Player {
 	public Player() {
 		this.hitPoints = 0;
 	}
-	
-	/*public void fillQuestionBank(Question[][] qB) {
-		//Addition
-			
-		//Subtraction
-		//Multiplication
-		//Division
-	}*/
 	
 	public Player(int hp) {
 		this.hitPoints = hp;
@@ -30,11 +22,5 @@ public class Player {
 	public void setHP(int hP) {
 		this.hitPoints = hP;
 	}
-	
-	/*public int rando(int upper, int check) {
-		Random rand = new Random();
-		int rand1 = rand.nextInt(upper) + check; 
-		return rand1;
-	}*/
 	
 }
