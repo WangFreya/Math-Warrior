@@ -41,16 +41,16 @@ public class Question {
 		
 	public void setQuestion(int qT) {
 		switch (qT) {
-		case 1:
+		case 0:
 			this.quest = this.num1 + " + " + this.num2 + " = __ ? ";
 			break;
-		case 2:
-			this.quest = this.num1 + " - " + this.num1 + " = __ ? ";
+		case 1:
+			this.quest = this.num1 + " - " + this.num2 + " = __ ? ";
 			break;
-		case 3:
+		case 2:
 			this.quest = this.num1 + " x " + this.num2 + " = __ ? ";
 			break;
-		case 4:
+		case 3:
 			this.quest = this.num1 + " / " + this.num2 + " = __ ? ";
 			break;
 		}
