@@ -1,8 +1,11 @@
 import java.util.Scanner;
 import java.util.Random;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
-//Method below has issues, random num gen not reliable. Change implementation to 2d array
+/**Todo
+ * Each game creates a 2d array - fill the array with question objects
+ * randomly pick spaces for questions. If space is empty in array, pick a new object from a different box 
+ * **/
 
 public class mathlete {
 		
@@ -21,25 +24,22 @@ public class mathlete {
 		villain.setHP(100);
 		hero.setHP(100);
 		
-		Random rand = new Random();
+		int rand1, rand2, rand3;
+		
+		Bank all = new Bank();
 		
 		while (villain.getHP() > 0 && hero.getHP() > 0) {
 			
-			int rand1 = rand.nextInt(12) + 2; 
-			int rand2 = rand.nextInt(12) + 2;
-			int rand3 = rand.nextInt(4) + 1;
+			rand1 = rando(11, 1); 
+			rand2 = rando(11, 1);
+			rand3 = rando(3, 1);
 			
-			//Question newQ = new Question(hero.rando(12, 2), hero.rando(12, 2), hero.rando(4, 2));
-			Question newQ = new Question(rand1, rand2, rand3);
-			
-			System.out.println(newQ.getQuest());
-			System.out.println(newQ.getAns());
-			//Debug - print null bc no string to print - issue with not having consistent rand variable to use
-			//Debug - issue with num - num = 0 questions, doesn't register 0 as answer - not accounting for with num1 and num2 are same and subtracting in Question class
+			Question problem = askQuest(all.getAllQuest(), rand1, rand2, rand3);
+			System.out.println(problem.getQuest());
 			
 			int in = input.nextInt();
 			
-			if (newQ.checkQ(in)) {
+			if (problem.checkQ(in)) {
 				villain.setHP(villain.getHP() - 10);
 				System.out.println("Correct");
 				
@@ -58,5 +58,26 @@ public class mathlete {
 		
 		input.close();		
 	}
+	
+	public static int rando(int upper, int check) {
+		Random rand = new Random();
+		int rand1 = rand.nextInt(upper) + check; 
+		return rand1;
+	}
+	
+	//recursion! - base and recursive case
+	public static Question askQuest(Question[][][] set, int r1, int r2, int r3) {
+		Question problem = set[r1][r2][r3];
+		if (problem != null) {
+			set[r1][r2][r3] = null;
+			return problem;
+		} else {
+			r1 = rando(11, 1); 
+			r2 = rando(11, 1);
+			r3 = rando(3, 1);
+			return askQuest(set, r1, r2, r3);
+		}
+	}
+	
 }
 
