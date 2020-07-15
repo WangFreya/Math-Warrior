@@ -3,8 +3,10 @@ import java.util.Random;
 //import javax.swing.JFrame;
 
 /**Todo
- * Each game creates a 2d array - fill the array with question objects
- * randomly pick spaces for questions. If space is empty in array, pick a new object from a different box 
+ *  - Redo divison question generation section. Works, but isn't satisfying
+ * Bugs:
+ *  - Rewrite way to have non-repeating questions
+ *  
  * **/
 
 public class mathlete {
@@ -27,6 +29,8 @@ public class mathlete {
 		int rand1, rand2, rand3;
 		
 		Bank all = new Bank();
+		
+		//all.printBank(3);
 		
 		while (villain.getHP() > 0 && hero.getHP() > 0) {
 			
@@ -66,17 +70,21 @@ public class mathlete {
 	}
 	
 	//recursion! - base and recursive case
+	//Method returns unasked questions from bank, asked questions are deleted from bank
+	//Issues here. Fix.
 	public static Question askQuest(Question[][][] set, int r1, int r2, int r3) {
 		Question problem = set[r1][r2][r3];
-		if (problem != null) {
+		Question ret;
+		if (problem.getQuest() != "No question") {
 			set[r1][r2][r3] = null;
-			return problem;
+			ret = problem;
 		} else {
 			r1 = rando(11, 1); 
 			r2 = rando(11, 1);
 			r3 = rando(3, 1);
-			return askQuest(set, r1, r2, r3);
+			ret = askQuest(set, r1, r2, r3);
 		}
+		return ret;
 	}
 	
 }
