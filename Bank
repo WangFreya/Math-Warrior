@@ -1,70 +1,84 @@
 /**
- * Something wrong with subtracted values 
- * 
  * @author fwang
- *
+ * Class file for "Bank" object that stores all possible questions that could be asked in mathlete.java.
  */
 
-
 public class Bank {
+	
 	private Question[][][] allQuestions;
 
+	//Default constructor
 	public Bank() {
-		allQuestions = new Question[12][12][4];
+		allQuestions = new Question[13][13][4];
+		//Methods below fill 4 2d Bank object arrays with questions based on math operator type
 		addQuest();
 		subQuest();
 		multQuest();
 		divQuest();
 	}
 	
+	//Getter method
 	public Question[][][] getAllQuest() {
 		return allQuestions;
 	}
 	
-	//check array index
+	//Method that fills Bank 2d Array 1 with addition problems from 0+0 to 12+12
 	private void addQuest() {
 		int ans = 0;
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 13; j++) {
 				ans = j + i;
-				this.allQuestions[j][i][0] = new Question(j, i, ans, 1);
+				this.allQuestions[j][i][0] = new Question(j, i, ans, 0);
 			}
 		}
 	}
 	
+	//Method that fills Bank 2d Array 2 with subtraction problems from 0-0 to 12-12
 	private void subQuest() {
-		int ans = 0;
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
+		int ans;
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 13; j++) {
 				ans = j - i;
-				this.allQuestions[j][i][1] = new Question(j, i, ans, 2);
+				this.allQuestions[j][i][1] = new Question(j, i, ans, 1);
 			}
 		}	
 	}
 	
+	//Method that fills Bank 2d Array 3 with multiplication problems from 0*0 to 12*12
 	private void multQuest() {
 		int ans = 0;
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 13; j++) {
 				ans = j * i;
-				this.allQuestions[j][i][2] = new Question(j, i, ans, 3);
+				this.allQuestions[j][i][2] = new Question(j, i, ans, 2);
 			}
 		}
 	}
 	
-	//Set a condition here
+	//Method that fills Bank 2d Array 4 with division problems based off of multiplication problem solutions from 2d array 3
 	private void divQuest() {
-		int ans = 0;
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
-				if (i == 0) {
-					this.allQuestions[j][i][3] = null;
-				} else if (j % i == 0) {
-					ans = j/i;
-					this.allQuestions[j][i][3] = new Question(j, i, ans, 4);
+		int ans, num1, num2;
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 13; j++) {
+				num1 = this.allQuestions[j][i][2].getAns();
+				num2 = j;
+				if (num2 == 0) {
+					this.allQuestions[j][i][3] = new Question();
 				} else {
-					this.allQuestions[j][i][3] = null;
-				}	
+					ans = num1 / num2;
+					this.allQuestions[j][i][3] = new Question(num1, num2, ans, 3);
+				}
+				
+			}
+		}
+	}
+	
+	//Method to help print debug project
+	public void printBank(int index) {
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 13; j++) {
+				System.out.println(this.getAllQuest()[j][i][index].getQuest() + " " + this.getAllQuest()[j][i][index].getAns());
+				
 			}
 		}
 	}

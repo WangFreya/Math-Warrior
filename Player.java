@@ -1,11 +1,13 @@
-//import java.util.Random;
-//import java.util.*;
-
+/**
+ * @author fwang
+ * Class file for "Player" object
+ */
 
 public class Player {
 	
 	private int hitPoints;
 	
+	//Default constructor
 	public Player() {
 		this.hitPoints = 0;
 	}
@@ -15,6 +17,7 @@ public class Player {
 		
 	}
 	
+	//Getter and setter methods for Player hitpoints
 	public int getHP() {
 		return hitPoints;
 	}
