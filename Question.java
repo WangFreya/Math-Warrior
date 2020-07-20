@@ -1,18 +1,26 @@
+/**
+ * @author fwang
+ * Class file for "Question" object that organizes information required for each question asked.
+ * File handles all 4 question types
+ */
 
 public class Question {
 	
 	private int num1;
 	private int num2;
 	private int answer;
-	private int qType;
-	private String quest;
+	private int qType; //Used to determine which math operation character to use when generation the "quest" string below
+	private String quest; //Question printed for User to read
+	private int count; //Used to keep track of number of types question is asked during game
 	
+	//Default constructor
 	public Question() {
 		this.num1 = 0;
 		this.num2 = 0;
 		this.answer = 0;
 		this.qType = 0;
 		this.quest = "No question";
+		this.count = 0;
 	}
 		
 	public Question(int n1, int n2, int answer, int qTyp) {
@@ -21,6 +29,16 @@ public class Question {
 		this.answer = answer;
 		this.qType = qTyp;
 		this.setQuestion(this.qType);
+		this.count = 0;
+	}
+	
+	//Series of getter and setter methods for various private variables
+	public int getCount() {
+		return this.count;
+	}
+	
+	public void setCount(int val) {
+		this.count = val;
 	}
 	
 	public String getQuest() {
@@ -39,6 +57,7 @@ public class Question {
 		this.num2 = num;
 	}
 		
+	//Method creates "quest" string
 	public void setQuestion(int qT) {
 		switch (qT) {
 		case 0:
@@ -56,6 +75,7 @@ public class Question {
 		}
 	}
 	
+	//Method determines if inputed answer is correct or not
 	public boolean checkQ(int ans) {
 		if (ans == this.answer) {
 			return true;
