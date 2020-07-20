@@ -1,6 +1,3 @@
-import java.util.Scanner;
-import java.util.Random;
-
 /**
  * @author fwang
  * Project designed as a game to help students practice basic math skills. 
@@ -9,6 +6,9 @@ import java.util.Random;
  * Get 10 questions wrong and lose the game. Get 10 questions correct and win. 
  *  
  * **/
+
+import java.util.Scanner;
+import java.util.Random;
 
 public class mathlete {
 		
